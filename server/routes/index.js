@@ -15,9 +15,13 @@ router.get('/user/:name', async (ctx, next) => {
   }
 })
 
+router.get('/', async (ctx, next) => {
+  ctx.redirect('/jobs/list');
+});
+
 // 职位列表
-router.get('/jobs/list/:page', async (ctx, next) => {
-  const curPage = Number(ctx.params.page)
+router.get('/jobs/list', async (ctx, next) => {
+  const curPage = Number(ctx.query.page)
   const pageSize = 10
   const Job = mongoose.model('Job')
   const total = await Job.find({}).count()

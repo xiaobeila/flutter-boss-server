@@ -5,7 +5,7 @@ const sleep = time => new Promise(resolve => {
 })
 
 async function fetchJobList (page, curPage) {
-  const url = `https://www.zhipin.com/c101020100/?query=Android&page=${curPage}&ka=page-${curPage}`
+  const url = `https://www.zhipin.com/c101020100/?query=golang&page=${curPage}&ka=page-${curPage}`
 
   await page.goto(url, {
     waitUntil: 'networkidle2'
@@ -31,7 +31,7 @@ async function fetchJobList (page, curPage) {
         let info = it.find('.info-primary p').text()
         let category = it.find('.company-text p').text()
         let head = it.find('.info-publis .name img').attr('src')
-        let publish = it.find('.info-publis p').text()
+        let publish = it.find('.info-publis h3').text()
         let link = 'https://www.zhipin.com' + it.find('.info-primary a').attr('href')
 
         objItem.push({

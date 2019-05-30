@@ -16,7 +16,7 @@
           clearable/>
       </el-form-item>
       <el-form-item>
-        <el-button>登 录</el-button>
+        <el-button @click="asyncData()">登 录</el-button>
       </el-form-item>
     </el-form>
     <!-- <div class="links">
@@ -38,9 +38,9 @@ export default {
 
   },
 
-  async asyncData({ query }) {
+  // async asyncData({ query }) {
     
-  },
+  // },
 
   data() {
     return {
