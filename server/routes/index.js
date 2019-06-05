@@ -45,8 +45,8 @@ router.get('/jobs/list', async (ctx, next) => {
 })
 
 // 公司列表
-router.get('/company/list/:page', async (ctx, next) => {
-  const curPage = Number(ctx.params.page)
+router.get('/company/list', async (ctx, next) => {
+  const curPage = Number(ctx.query.page)
   const pageSize = 10
   const Company = mongoose.model('Company')
   const total = await Company.find({}).count()
@@ -93,11 +93,11 @@ router.get('/companyDetail/list/:page', async (ctx, next) => {
   }
 })
 
-router.get('/companyDetail/:id', async (ctx, next) => {
-  const id = ctx.params.id
-  console.log('id: ' + id)
+router.get('/companyDetail', async (ctx, next) => {
+  const name = String(ctx.query.name)
+  console.log(name)
   const Company = mongoose.model('CompanyDetail')
-  const companyDetail = await Company.findOne({_id: id})
+  const companyDetail = await Company.findOne({name: name})
 
   ctx.body = {
     'data': {

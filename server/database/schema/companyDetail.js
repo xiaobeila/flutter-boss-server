@@ -6,6 +6,7 @@ const companyDetailSchema = new Schema({
     unique: true,
     type: String
   },
+  name: String,
   inc: String,
   companyImgsResult: [String],
   tagsResult: [String],

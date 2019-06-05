@@ -14,7 +14,8 @@ async function fetchCompany (page, companyId) {
 
   return await page.evaluate(() => {
     let $ = window.$;
-    let inc = $('.fold-text').html()   // 公司简介
+    let name = $(".pos-bread a[ka='brand-breadcrumb-3']").text()  // 公司名称
+    let inc = $('.fold-text').text()   // 公司简介
     let tags = $('.company-tags span')  // 公司福利
     let tagsResult = []
     let companyImgs = $('.slider-main img')   // 公司图片
@@ -33,6 +34,7 @@ async function fetchCompany (page, companyId) {
     }
 
     return {
+      name,
       inc,
       tagsResult,
       companyImgsResult
@@ -56,6 +58,7 @@ async function fetchCompany (page, companyId) {
     let temp = await fetchCompany(page, companyIds[0])
     const data = {
       id: companyIds[0],
+      name: temp.name,
       inc: temp.inc,
       tagsResult: temp.tagsResult,
       companyImgsResult: temp.companyImgsResult
@@ -64,7 +67,7 @@ async function fetchCompany (page, companyId) {
     companyIds.shift()
   }
 
-  console.log(result)
+  // console.log(result)
 
   process.send({result})
   await sleep(5000)
